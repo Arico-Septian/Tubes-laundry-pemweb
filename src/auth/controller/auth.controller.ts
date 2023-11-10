@@ -7,13 +7,13 @@ import { LoginAuhDTO } from '../dto/login-auth.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // register for new user
+  // registrasi user baru
   @Post('auth/register')
   register(@Body() body: RegistrasiDto) {
     return this.authService.create(body);
   }
 
-  // login route for user
+  // login data user
   @Post('auth/login')
   signIn(@Body() body: LoginAuhDTO) {
     return this.authService.login(body);
