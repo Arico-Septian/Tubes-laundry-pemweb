@@ -37,15 +37,15 @@ export class OrderController {
 
   // melihat data order berdasarkan userid
   @Get('order/:userid')
-   findOne(@Param('userid') userid: string): Promise<Order[] | null> {
+    findOne(@Param('userid') userid: string): Promise<Order[] | null> {
     return this.orderService.findOne(userid);
   }
 
-    // edit data order
-    @Patch('order/:orderid/penilaian')
-    updatepenilaian(
-      @Param('orderid') orderid: string, 
-      @Body() body: PenilaianOrderDto): Promise<Order> {
-      return this.orderService.updatepenilaian(orderid, body);
+  // edit data order
+  @Patch('order/:orderid/penilaian')
+  updatepenilaian(
+    @Param('orderid') orderid: string, 
+    @Body() body: PenilaianOrderDto): Promise<Order> {
+    return this.orderService.updatepenilaian(orderid, body);
     }
 }

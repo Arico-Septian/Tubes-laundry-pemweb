@@ -25,7 +25,7 @@ export class OrderService {
 
       return order
 
-    } catch (err) {
+    } catch (error) {
 
       throw new UnprocessableEntityException('input data error')
     }
@@ -51,8 +51,8 @@ export class OrderService {
 
       return order;
 
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -64,8 +64,8 @@ export class OrderService {
 
       return order;
 
-    } catch (err) {
-      console.log(err.message)
+    } catch (error) {
+      console.log(error.message)
     }
   }
 
@@ -79,8 +79,8 @@ export class OrderService {
 
       return order;
 
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   }
 }

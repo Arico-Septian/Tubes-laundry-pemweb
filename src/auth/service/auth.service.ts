@@ -1,4 +1,4 @@
-import { Injectable, NotAcceptableException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common';
+import { Injectable, NotAcceptableException, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
@@ -27,9 +27,9 @@ export class AuthService {
 
       return user
 
-    } catch (err) {
+    } catch (error) {
 
-      if(err.message.includes('@gmail.com'))
+      if(error.message.includes('@gmail.com'))
         throw new UnprocessableEntityException('Email already exists')
 
       throw new UnprocessableEntityException('Username already exists')
