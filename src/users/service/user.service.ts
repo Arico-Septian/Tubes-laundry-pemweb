@@ -1,6 +1,5 @@
 import { Injectable, NotAcceptableException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Order } from "src/order/entities/entities/order.entity"
 import { Repository } from 'typeorm';
 import * as bcrypt from "bcrypt";
 import { UpdateUserDto } from '../dto/update-user.dto';
