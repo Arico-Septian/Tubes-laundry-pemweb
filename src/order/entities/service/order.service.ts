@@ -2,7 +2,6 @@ import { Injectable, NotAcceptableException, NotFoundException, UnauthorizedExce
 import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from "src/order/entities/entities/order.entity"
 import { Repository } from 'typeorm';
-import * as bcrypt from "bcrypt";
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 import { PenilaianOrderDto } from '../dto/penilaian-order.dto';
