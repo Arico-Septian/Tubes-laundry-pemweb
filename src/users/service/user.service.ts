@@ -12,9 +12,11 @@ export class UserService {
 
   async create(body: UpdateUserDto) {
     try {
+      const hashPassword = await bcrypt.hash(body.password, 15)
+      
       const user = this.userRepository.create({ 
         username: body.username,
-        password: body.password,
+        password:hashPassword,
         nomor_handphone: body.nomor_handphone, 
         email: body.email, 
         nomor_rekening: body.nomor_rekening,
