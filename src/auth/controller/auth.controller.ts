@@ -3,8 +3,7 @@ import { AuthService } from '../service/auth.service';
 import { RegistrasiDto } from '../dto/registrasi.dto';
 import { LoginAuhDTO } from '../dto/login-auth.dto';
 import { User } from 'src/users/entities/user.entity';
-import { UpdateAuthDto } from '../dto/update-auth.dto';
-
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 @Controller('api')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -37,7 +36,7 @@ export class AuthController {
   @Patch('user/:userid/edit')
   update(
     @Param('userid') userid: string, 
-    @Body() body: UpdateAuthDto): Promise<User> {
+    @Body() body: UpdateUserDto): Promise<User> {
     return this.authService.update(userid, body);
   }
 

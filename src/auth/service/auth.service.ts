@@ -5,8 +5,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from "bcrypt";
 import { RegistrasiDto } from '../dto/registrasi.dto';
 import { LoginAuhDTO } from '../dto/login-auth.dto';
-import { UpdateAuthDto } from '../dto/update-auth.dto';
-
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 @Injectable()
 export class AuthService {
   constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
@@ -70,7 +69,7 @@ export class AuthService {
     }
   }
 
-  async update(userid: string, body: UpdateAuthDto): Promise<User> {
+  async update(userid: string, body: UpdateUserDto): Promise<User> {
     try {
       const user = await this.userRepository.findOneBy({ userid })
 
