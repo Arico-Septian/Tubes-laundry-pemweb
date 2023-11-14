@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from "bcrypt";
 import { RegistrasiDto } from '../dto/registrasi.dto';
 import { LoginAuhDTO } from '../dto/login-auth.dto';
+import { UpdateAuthDto } from '../dto/update-auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -49,5 +50,43 @@ export class AuthService {
       throw new NotAcceptableException('password error');
 
     return user
+  }
+
+  async findAll(): Promise<User[] | null> {
+    const order = await this.userRepository.find()
+    return order;
+  }
+
+  async findOne(userid: string): Promise<User[] | null> {
+    try {
+      const user = await this.userRepository.findBy({
+        userid
+      })
+
+      return user;
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  async update(userid: string, body: UpdateAuthDto): Promise<User> {
+    try {
+      const user = await this.userRepository.findOneBy({ userid })
+
+      Object.assign(user, body)
+
+      await this.userRepository.save(user)
+
+      return user;
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async remove(userid: string) {
+    await this.userRepository.delete(userid)
+    return `This action removes a #${userid} user`;
   }
 }
