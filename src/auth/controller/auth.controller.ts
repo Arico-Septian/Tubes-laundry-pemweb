@@ -26,7 +26,7 @@ export class AuthController {
     return await this.authService.findAll();
   }
 
-  // melihat data order berdasarkan userid
+  // melihat data user berdasarkan userid
   @Get('user/:userid')
   findOne(@Param('userid') userid: string): Promise<User[] | null> {
   return this.authService.findOne(userid);

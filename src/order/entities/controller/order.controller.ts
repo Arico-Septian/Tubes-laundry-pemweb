@@ -41,7 +41,7 @@ export class OrderController {
     return this.orderService.findOne(userid);
   }
 
-  // edit data order
+  // edit data penilaian order
   @Patch('order/:orderid/penilaian')
   updatepenilaian(
     @Param('orderid') orderid: string, 
