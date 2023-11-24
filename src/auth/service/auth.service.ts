@@ -29,10 +29,7 @@ export class AuthService {
 
     } catch (error) {
 
-      if(error.message.includes('@gmail.com'))
-        throw new UnprocessableEntityException('Email already exists')
-
-      throw new UnprocessableEntityException('Username already exists')
+      throw new UnprocessableEntityException('Email already exists')
     }
   }
 
@@ -65,7 +62,7 @@ export class AuthService {
       return user;
 
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
     }
   }
 
