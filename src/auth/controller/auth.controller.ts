@@ -33,7 +33,7 @@ export class AuthController {
   return this.authService.findOne(userid);
   }
 
-  // edit data user
+  // update data user
   @Patch('user/:userid/edit')
   update(
     @Param('userid') userid: string, 

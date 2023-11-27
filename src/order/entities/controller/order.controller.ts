@@ -29,7 +29,7 @@ export class OrderController {
     return this.orderService.remove(orderid);
   }
 
-  // edit data order
+  // update data order
   @Patch('order/:orderid/edit')
   update(
     @Param('orderid') orderid: string, 
