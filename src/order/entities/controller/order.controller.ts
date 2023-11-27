@@ -1,15 +1,17 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards} from '@nestjs/common';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { OrderService } from '../service/order.service';
 import { Order } from '../entities/order.entity';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 import { PenilaianOrderDto } from '../dto/penilaian-order.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('api')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   // membuat data order
+  @UseGuards(AuthGuard)
   @Post('order/create')
   create(@Body() body: CreateOrderDto) {
     return this.orderService.create(body);

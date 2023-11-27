@@ -6,9 +6,11 @@ import * as bcrypt from "bcrypt";
 import { RegistrasiDto } from '../dto/registrasi.dto';
 import { LoginAuhDTO } from '../dto/login-auth.dto';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
+import { JwtService } from '@nestjs/jwt';
+
 @Injectable()
 export class AuthService {
-  constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
+  constructor(@InjectRepository(User) private userRepository: Repository<User>,private jwtService: JwtService){}
 
   async create(body: RegistrasiDto) {
     try {
@@ -45,7 +47,19 @@ export class AuthService {
     if(!passwordMatch)
       throw new NotAcceptableException('password error');
 
-    return user
+    const payload = { sub: user.userid, username: user.username };
+
+    return {
+      "userid": user.userid,
+      "username": user.username,
+      "nomor_handphone": user.nomor_handphone,
+      "password": user.password,
+      "email": user.email,
+      "nama_bank": user.nama_bank,
+      "nomor_rekening": user.nomor_rekening,
+      "role": user.role,
+      "access_token": await this.jwtService.signAsync(payload),
+    };
   }
 
   async findAll(): Promise<User[] | null> {
