@@ -22,7 +22,7 @@ export class AuthController {
   }
 
   // update data user
-  @Patch('user/:userid/edit')
+  @Patch('user/:userid/update')
   update(
     @Param('userid') userid: string, 
     @Body() body: UpdateUserDto): Promise<User> {

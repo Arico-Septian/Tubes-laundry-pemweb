@@ -6,10 +6,6 @@ export class CreateOrderDto {
     @IsNotEmpty()
     kategori_laundry: string;
 
-    @IsString()
-    @IsNotEmpty()
-    userid: string;
-
     @IsNotEmpty()
     jumlah_pakaian: number;
 
@@ -19,4 +15,8 @@ export class CreateOrderDto {
     @IsString()
     @IsNotEmpty()
     metode_pembayaran: string;
+
+    @IsString()
+    @IsNotEmpty()
+    userid: string;
 }

@@ -19,7 +19,7 @@ export class OrderController {
 
   // update data order
   @UseGuards(AuthGuard)
-  @Patch('order/:orderid/edit')
+  @Patch('order/:orderid/update')
   update(
     @Param('orderid') orderid: string, 
     @Body() body: UpdateOrderDto): Promise<Order> {
