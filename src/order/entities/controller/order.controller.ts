@@ -17,24 +17,26 @@ export class OrderController {
     return this.orderService.create(body);
   }
 
-  // melihat semua data order
-  @Get('order')
-  async findAll(): Promise<Order[] | null> {
-    return await this.orderService.findAll();
-  }
-
-  // delete data order
-  @Delete('order/:orderid/delete')
-  remove(@Param('orderid') orderid: string) {
-    return this.orderService.remove(orderid);
-  }
-
   // update data order
+  @UseGuards(AuthGuard)
   @Patch('order/:orderid/edit')
   update(
     @Param('orderid') orderid: string, 
     @Body() body: UpdateOrderDto): Promise<Order> {
     return this.orderService.update(orderid, body);
+  }
+
+  // delete data order
+  @UseGuards(AuthGuard)
+  @Delete('order/:orderid/delete')
+  remove(@Param('orderid') orderid: string) {
+    return this.orderService.remove(orderid);
+  }
+
+  // melihat semua data order
+  @Get('order')
+  async findAll(): Promise<Order[] | null> {
+    return await this.orderService.findAll();
   }
 
   // melihat data order berdasarkan userid

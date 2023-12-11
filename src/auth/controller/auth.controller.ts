@@ -21,18 +21,6 @@ export class AuthController {
     return this.authService.login(body);
   }
 
-  // melihat semua data user
-  @Get('user')
-  async findAll(): Promise<User[] | null> {
-    return await this.authService.findAll();
-  }
-
-  // melihat data user berdasarkan userid
-  @Get('user/:userid')
-  findOne(@Param('userid') userid: string): Promise<User[] | null> {
-  return this.authService.findOne(userid);
-  }
-
   // update data user
   @Patch('user/:userid/edit')
   update(
@@ -45,5 +33,17 @@ export class AuthController {
   @Delete('user/:userid/delete')
   remove(@Param('userid') userid: string) {
     return this.authService.remove(userid);
+  }
+
+  // melihat semua data user
+  @Get('user')
+  async findAll(): Promise<User[] | null> {
+    return await this.authService.findAll();
+  }
+
+  // melihat data user berdasarkan userid
+  @Get('user/:userid')
+  findOne(@Param('userid') userid: string): Promise<User[] | null> {
+  return this.authService.findOne(userid);
   }
 }
