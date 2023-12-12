@@ -62,24 +62,6 @@ export class AuthService {
     };
   }
 
-  async findAll(): Promise<User[] | null> {
-    const order = await this.userRepository.find()
-    return order;
-  }
-
-  async findOne(userid: string): Promise<User[] | null> {
-    try {
-      const user = await this.userRepository.findBy({
-        userid
-      })
-
-      return user;
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   async update(userid: string, body: UpdateUserDto): Promise<User> {
     try {
       const user = await this.userRepository.findOneBy({ userid })
@@ -98,5 +80,23 @@ export class AuthService {
   async remove(userid: string) {
     await this.userRepository.delete(userid)
     return `This action removes a #${userid} user`;
+  }
+
+  async findAll(): Promise<User[] | null> {
+    const order = await this.userRepository.find()
+    return order;
+  }
+
+  async findOne(userid: string): Promise<User[] | null> {
+    try {
+      const user = await this.userRepository.findBy({
+        userid
+      })
+
+      return user;
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

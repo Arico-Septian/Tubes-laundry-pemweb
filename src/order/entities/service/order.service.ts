@@ -30,15 +30,6 @@ export class OrderService {
     }
 
   }
-  async findAll(): Promise<Order[] | null> {
-    const order = await this.orderRepository.find()
-    return order;
-  }
-
-  async remove(orderid: string) {
-    await this.orderRepository.delete(orderid)
-    return `This action removes a #${orderid} order`;
-  }
 
   async update(orderid: string, body: UpdateOrderDto): Promise<Order> {
     try {
@@ -53,6 +44,16 @@ export class OrderService {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  async remove(orderid: string) {
+    await this.orderRepository.delete(orderid)
+    return `This action removes a #${orderid} order`;
+  }
+
+  async findAll(): Promise<Order[] | null> {
+    const order = await this.orderRepository.find()
+    return order;
   }
 
   async findOne(userid: string): Promise<Order[] | null> {
