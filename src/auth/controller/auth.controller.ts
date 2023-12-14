@@ -28,19 +28,7 @@ export class AuthController {
     @Body() body: UpdateUserDto): Promise<User> {
     return this.authService.update(userid, body);
   }
-
-  // delete data user
-  @Delete('user/:userid/delete')
-  remove(@Param('userid') userid: string) {
-    return this.authService.remove(userid);
-  }
-
-  // melihat semua data user
-  @Get('user')
-  async findAll(): Promise<User[] | null> {
-    return await this.authService.findAll();
-  }
-
+  
   // melihat data user berdasarkan userid
   @Get('user/:userid')
   findOne(@Param('userid') userid: string): Promise<User[] | null> {

@@ -77,16 +77,6 @@ export class AuthService {
     }
   }
 
-  async remove(userid: string) {
-    await this.userRepository.delete(userid)
-    return `This action removes a #${userid} user`;
-  }
-
-  async findAll(): Promise<User[] | null> {
-    const order = await this.userRepository.find()
-    return order;
-  }
-
   async findOne(userid: string): Promise<User[] | null> {
     try {
       const user = await this.userRepository.findBy({
