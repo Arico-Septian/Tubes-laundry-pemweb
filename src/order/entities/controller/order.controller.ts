@@ -4,7 +4,7 @@ import { OrderService } from '../service/order.service';
 import { Order } from '../entities/order.entity';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 import { PenilaianOrderDto } from '../dto/penilaian-order.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('api')
 export class OrderController {
