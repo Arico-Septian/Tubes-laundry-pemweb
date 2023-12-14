@@ -7,10 +7,52 @@ import { RegistrasiDto } from '../dto/registrasi.dto';
 import { LoginAuhDTO } from '../dto/login-auth.dto';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 import { JwtService } from '@nestjs/jwt';
+import { CreateUserDTO } from 'src/users/dto/create-user.dto';
+import { Role } from 'src/enum/role.enum';
 
 @Injectable()
 export class AuthService {
   constructor(@InjectRepository(User) private userRepository: Repository<User>,private jwtService: JwtService){}
+
+  async createModerator(body: CreateUserDTO) {
+    try {
+      const hashPassword = await bcrypt.hash(body.password, 15)
+  
+      const moderator = this.userRepository.create({
+        username: body.username,
+        email: body.email,
+        password: hashPassword,
+        role: Role.Moderator
+      })
+
+      await this.userRepository.save(moderator)
+
+      return moderator
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  async createAdmin(body: CreateUserDTO) {
+    try {
+      const hashPassword = await bcrypt.hash(body.password, 15)
+  
+      const admin = this.userRepository.create({
+        username: body.username,
+        email: body.email,
+        password: hashPassword,
+        role: Role.Admin
+      })
+
+      await this.userRepository.save(admin)
+
+      return admin
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   async create(body: RegistrasiDto) {
     try {
@@ -72,8 +114,8 @@ export class AuthService {
 
       return user;
 
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -85,8 +127,8 @@ export class AuthService {
 
       return user;
 
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 }
