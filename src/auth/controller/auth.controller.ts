@@ -55,7 +55,6 @@ export class AuthController {
   }
 
   // melihat data user berdasarkan userid
-  @Public()
   @Get('user/:userid')
   findOne(@Param('userid') userid: string): Promise<User[] | null> {
   return this.authService.findOne(userid);
