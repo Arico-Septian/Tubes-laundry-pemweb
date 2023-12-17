@@ -5,7 +5,6 @@ import { DatabaseModule } from './database/database.module';
 import { OrderModule } from './order/entities/order.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/guard/auth.guard';
-import { RolesGuard } from './guards/role.guard';
 
 @Module({
   providers: [
@@ -17,10 +16,7 @@ import { RolesGuard } from './guards/role.guard';
       provide: APP_GUARD,
       useClass: AuthGuard,
     },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
+
   ],
   imports: [
     DatabaseModule,
