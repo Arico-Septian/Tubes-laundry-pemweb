@@ -5,7 +5,6 @@ import { LoginAuhDTO } from '../dto/login-auth.dto';
 import { User } from 'src/users/entities/user.entity';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 
-
 @Controller('api')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
