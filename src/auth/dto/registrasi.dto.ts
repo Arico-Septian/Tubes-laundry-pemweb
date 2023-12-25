@@ -5,9 +5,6 @@ export class RegistrasiDto {
     @IsNotEmpty()
     username: string;
 
-    @IsNotEmpty()
-    nomor_handphone: number;
-
     @IsString()
     @IsNotEmpty()
     password: string;
@@ -15,6 +12,9 @@ export class RegistrasiDto {
     @IsEmail()
     @IsNotEmpty()
     email: string;
+
+    @IsNotEmpty()
+    nomor_handphone: number;
 
     @IsString()
     @IsNotEmpty()
