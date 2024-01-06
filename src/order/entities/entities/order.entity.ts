@@ -30,6 +30,9 @@ export class Order {
 	@Column({ type: 'varchar' })
 	penilaian: string
 
+	@Column({ type: 'int', })
+	jumlah_pembayaran: number
+
 	// relasi ke user
 	@ManyToOne(() => User, user => user.orders)
 	@JoinColumn({ name: 'userid'})

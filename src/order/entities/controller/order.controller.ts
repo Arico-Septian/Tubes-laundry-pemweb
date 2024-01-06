@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, UseGuards } from '@nestjs/common';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { OrderService } from '../service/order.service';
 import { Order } from '../entities/order.entity';
@@ -8,7 +8,7 @@ import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('api')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly orderService: OrderService) { }
 
   // membuat data order
   @UseGuards(AuthGuard)
@@ -21,7 +21,7 @@ export class OrderController {
   @UseGuards(AuthGuard)
   @Patch('order/:orderid/update')
   update(
-    @Param('orderid') orderid: string, 
+    @Param('orderid') orderid: string,
     @Body() body: UpdateOrderDto): Promise<Order> {
     return this.orderService.update(orderid, body);
   }
@@ -41,15 +41,21 @@ export class OrderController {
 
   // melihat data order berdasarkan userid
   @Get('order/:userid')
-    findOne(@Param('userid') userid: string): Promise<Order[] | null> {
+  findOne(@Param('userid') userid: string): Promise<Order[] | null> {
     return this.orderService.findOne(userid);
+  }
+
+  // melihat data order berdasarkan orderid
+  @Get('order/detail/:orderid')
+  findOneOrder(@Param('orderid') orderid: string): Promise<Order | null> {
+    return this.orderService.findOneOrder(orderid);
   }
 
   // edit data penilaian order
   @Patch('order/:orderid/penilaian')
   updatepenilaian(
-    @Param('orderid') orderid: string, 
+    @Param('orderid') orderid: string,
     @Body() body: PenilaianOrderDto): Promise<Order> {
     return this.orderService.updatepenilaian(orderid, body);
-    }
+  }
 }

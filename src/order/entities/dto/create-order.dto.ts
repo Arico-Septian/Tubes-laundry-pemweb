@@ -19,4 +19,7 @@ export class CreateOrderDto {
     @IsString()
     @IsNotEmpty()
     userid: string;
+
+    @IsNotEmpty()
+    jumlah_pembayaran: number;
 }

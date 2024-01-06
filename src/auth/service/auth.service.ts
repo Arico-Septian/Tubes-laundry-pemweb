@@ -47,7 +47,7 @@ export class AuthService {
     if(!passwordMatch)
       throw new NotAcceptableException('password error');
 
-    const payload = { sub: user.userid, username: user.username };
+    const payload = { sub: user.userid, username: user.username, role: user.role };
 
     return {
       "userid": user.userid,

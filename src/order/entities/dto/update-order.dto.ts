@@ -15,4 +15,7 @@ export class UpdateOrderDto {
     @IsString()
     @IsNotEmpty()
     metode_pembayaran: string;
+
+    @IsNotEmpty()
+    jumlah_pembayaran: number;
 }
